@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+chromadb
+pandas
+python-multipart
+pydantic-settings
+groq
+fastembed

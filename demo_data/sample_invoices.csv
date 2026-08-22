@@ -1,0 +1,6 @@
+Invoice_ID,Customer_Name,Item_Description,Amount,Issue_Date,Due_Date,Payment_Status,Days_Overdue
+INV-2024-001,ABC Electricals,Industrial Copper Wiring & Breakers,2500.00,2024-05-10,2024-06-10,Overdue,45
+INV-2024-002,Zenith Retailers,Custom POS Terminal Units,4100.00,2024-06-01,2024-07-01,Paid,0
+INV-2024-003,Gamma Industries,Heavy Duty Relay Switchgear,1850.00,2024-05-20,2024-06-20,Overdue,35
+INV-2024-004,Nexus Logistics,Fleet Telematics Sensors,3200.00,2024-07-15,2024-08-15,Pending,0
+INV-2024-005,Nova Tech Solutions,Server Rack Cooling Assembly,5400.00,2024-04-12,2024-05-12,Overdue,60

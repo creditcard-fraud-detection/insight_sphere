@@ -1,4 +1,9 @@
 venv/
 __pycache__/
+**/__pycache__/
 chroma_db/
 .env
+backend/.env
+frontend/node_modules/
+server.log
+.freebuff/*.log*
