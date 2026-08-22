@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+ollama
+chromadb
+pandas
+python-multipart
