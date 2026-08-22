@@ -67,11 +67,11 @@ export default function Login({ onLogin }: LoginProps) {
       <div className="relative z-10 w-full max-w-md px-6">
         {/* Logo */}
         <div className="mb-8 flex flex-col items-center text-center">
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded border border-orange-500/30 bg-orange-500/10">
-            <Brain className="h-7 w-7 text-orange-500" />
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded border border-blue-500/30 bg-blue-500/10">
+            <Brain className="h-7 w-7 text-blue-500" />
           </div>
           <h1 className="text-xl font-bold text-white">InsightSphere</h1>
-          <span className="mt-1 rounded bg-orange-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-400 ring-1 ring-orange-500/30">
+          <span className="mt-1 rounded bg-blue-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-blue-400 ring-1 ring-blue-500/30">
             AUTONOMOUS INTELLIGENCE
           </span>
         </div>
@@ -96,7 +96,7 @@ export default function Login({ onLogin }: LoginProps) {
               onClick={() => { setMode("signin"); setError(null); }}
               className={`flex-1 rounded py-2 text-xs font-medium transition ${
                 mode === "signin"
-                  ? "bg-orange-500/15 text-orange-400"
+                  ? "bg-blue-500/15 text-blue-400"
                   : "text-neutral-500 hover:text-neutral-300"
               }`}
             >
@@ -107,7 +107,7 @@ export default function Login({ onLogin }: LoginProps) {
               onClick={() => { setMode("signup"); setError(null); }}
               className={`flex-1 rounded py-2 text-xs font-medium transition ${
                 mode === "signup"
-                  ? "bg-orange-500/15 text-orange-400"
+                  ? "bg-blue-500/15 text-blue-400"
                   : "text-neutral-500 hover:text-neutral-300"
               }`}
             >
@@ -133,7 +133,7 @@ export default function Login({ onLogin }: LoginProps) {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Username"
-                  className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-orange-500/50"
+                  className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-blue-500/50"
                   autoFocus
                   required
                 />
@@ -148,7 +148,7 @@ export default function Login({ onLogin }: LoginProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email address"
-                className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-orange-500/50"
+                className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-blue-500/50"
                 autoFocus={mode === "signin"}
                 required
               />
@@ -162,7 +162,7 @@ export default function Login({ onLogin }: LoginProps) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-orange-500/50"
+                className="w-full rounded border border-neutral-800 bg-[#0a0a0a] py-3 pl-10 pr-4 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-blue-500/50"
                 required
                 minLength={6}
               />
@@ -171,7 +171,7 @@ export default function Login({ onLogin }: LoginProps) {
             <button
               type="submit"
               disabled={loading || !email.trim() || !password.trim()}
-              className="flex w-full items-center justify-center gap-2 rounded bg-orange-500 py-3 text-sm font-semibold text-black transition hover:bg-orange-400 disabled:opacity-50 disabled:hover:bg-orange-500"
+              className="flex w-full items-center justify-center gap-2 rounded bg-blue-500 py-3 text-sm font-semibold text-black transition hover:bg-blue-400 disabled:opacity-50 disabled:hover:bg-blue-500"
             >
               {loading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />

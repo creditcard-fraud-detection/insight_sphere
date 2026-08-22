@@ -3,14 +3,15 @@
 ## How to reproduce artifacts
 
 - `frontend/node_modules/` — run `cd frontend && npm install` from the project root
-- Backend requires `venv/` — run `python -m venv venv && venv/Scripts/activate && pip install -r requirements.txt`
-- Ollama models must be pulled: `ollama pull qwen2.5:3b` and `ollama pull nomic-embed-text`
+- Backend requires `venv/` — run `python -m venv venv && venv/Scripts/activate && pip install -r backend/requirements.txt`
+- Backend `.env` with API keys must exist at `backend/.env` (GROQ_API_KEY, CHROMA_API_KEY, CHROMA_TENANT, CHROMA_DATABASE)
+- No local Ollama required — backend uses Groq cloud LLM + FastEmbed CPU embeddings + Chroma Cloud
 
 ## How to run the servers
 
 1. Start the FastAPI backend (port 8000):
    ```
-   venv/Scripts/python -m uvicorn main:app --host 127.0.0.1 --port 8000
+   venv/Scripts/python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
    ```
 
 2. Start the Vite frontend dev server (port 5173):

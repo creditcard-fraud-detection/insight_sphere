@@ -6,8 +6,8 @@
   --color-panel-hover: #1a1a1a;
   --color-border: #262626;
   --color-border-bright: #404040;
-  --color-amber: #f59e0b;
-  --color-amber-dim: #b45309;
+  --color-blue: #3b82f6;
+  --color-blue-dim: #1d4ed8;
 }
 
 html, body, #root {

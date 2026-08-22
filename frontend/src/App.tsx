@@ -361,11 +361,11 @@ export default function App() {
       <header className="border-b border-neutral-800 bg-[#121212]">
         <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
-            <Brain className="h-6 w-6 text-orange-500" />
+            <Brain className="h-6 w-6 text-blue-500" />
             <h1 className="text-lg font-bold tracking-tight text-white">
               InsightSphere
             </h1>
-            <span className="rounded bg-orange-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-orange-400 ring-1 ring-orange-500/30">
+            <span className="rounded bg-blue-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-blue-400 ring-1 ring-blue-500/30">
               AUTONOMOUS INTELLIGENCE
             </span>
           </div>
@@ -374,7 +374,7 @@ export default function App() {
             {userName && (
               <span className="text-xs text-neutral-500">
                 <span className="text-neutral-600">Signed in as </span>
-                <span className="text-orange-400">{userName}</span>
+                <span className="text-blue-400">{userName}</span>
               </span>
             )}
             <button
@@ -409,7 +409,7 @@ export default function App() {
           <span className="h-3 w-px bg-neutral-800" />
 
           <span className="flex items-center gap-1.5 text-neutral-400">
-            <Database className="h-3 w-3 text-orange-500" />
+            <Database className="h-3 w-3 text-blue-500" />
             Chroma DB:
             <span className="text-green-400">Connected</span>
             <span className="text-neutral-600">(Insight_sphere)</span>
@@ -417,17 +417,17 @@ export default function App() {
           <span className="h-3 w-px bg-neutral-800" />
 
           <span className="flex items-center gap-1.5 text-neutral-400">
-            <Zap className="h-3 w-3 text-orange-500" />
+            <Zap className="h-3 w-3 text-blue-500" />
             Model:
-            <span className="text-orange-400">Groq openai/gpt-oss-120b</span>
+            <span className="text-blue-400">Groq openai/gpt-oss-120b</span>
             <span className="text-neutral-600">/ FastEmbed BGE</span>
           </span>
           <span className="h-3 w-px bg-neutral-800" />
 
           <span className="flex items-center gap-1.5 text-neutral-400">
-            <FileText className="h-3 w-3 text-orange-500" />
+            <FileText className="h-3 w-3 text-blue-500" />
             Files Ingested:
-            <span className="font-medium text-orange-400">{ingestedFiles}</span>
+            <span className="font-medium text-blue-400">{ingestedFiles}</span>
           </span>
         </div>
       </header>
@@ -451,7 +451,7 @@ export default function App() {
             <div className="flex items-center gap-1">
               <button
                 onClick={startNewChat}
-                className="flex items-center gap-1 rounded border border-neutral-700 px-2 py-1 text-[10px] text-neutral-500 transition hover:border-orange-500/30 hover:text-orange-400"
+                className="flex items-center gap-1 rounded border border-neutral-700 px-2 py-1 text-[10px] text-neutral-500 transition hover:border-blue-500/30 hover:text-blue-400"
                 title="New chat"
               >
                 <Plus className="h-3 w-3" />
@@ -481,7 +481,7 @@ export default function App() {
                         onClick={() => loadChat(s.id)}
                         className={`w-full rounded px-2 py-2 text-left text-xs transition ${
                           currentChatId === s.id
-                            ? "bg-orange-500/10 text-orange-400 ring-1 ring-orange-500/20"
+                            ? "bg-blue-500/10 text-blue-400 ring-1 ring-blue-500/20"
                             : "text-neutral-400 hover:bg-[#1a1a1a] hover:text-neutral-300"
                         }`}
                       >
@@ -513,7 +513,7 @@ export default function App() {
           <div className="flex items-center gap-2 border-b border-neutral-800/50 bg-[#0e0e0e] px-4 py-1">
             <button
               onClick={() => setLeftOpen(!leftOpen)}
-              className="rounded p-1 text-neutral-600 transition hover:text-orange-400"
+              className="rounded p-1 text-neutral-600 transition hover:text-blue-400"
               title={leftOpen ? "Collapse chat history" : "Show chat history"}
             >
               {leftOpen ? <PanelLeftClose className="h-3.5 w-3.5" /> : <PanelLeftOpen className="h-3.5 w-3.5" />}
@@ -522,7 +522,7 @@ export default function App() {
             <div className="flex-1" />
             <button
               onClick={() => setRightOpen(!rightOpen)}
-              className="rounded p-1 text-neutral-600 transition hover:text-orange-400"
+              className="rounded p-1 text-neutral-600 transition hover:text-blue-400"
               title={rightOpen ? "Collapse data panel" : "Show data panel"}
             >
               {rightOpen ? <PanelRightClose className="h-3.5 w-3.5" /> : <PanelRightOpen className="h-3.5 w-3.5" />}
@@ -553,12 +553,12 @@ export default function App() {
                   <div
                     className={`max-w-[80%] rounded px-4 py-3 text-sm leading-relaxed ${
                       msg.role === "user"
-                        ? "bg-orange-500/15 text-orange-100 ring-1 ring-orange-500/20"
+                        ? "bg-blue-500/15 text-blue-100 ring-1 ring-blue-500/20"
                         : "bg-[#121212] text-neutral-200 ring-1 ring-neutral-800"
                     }`}
                   >
                     {msg.role === "assistant" && (
-                      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-orange-500">
+                      <div className="mb-1.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-blue-500">
                         <MessageSquare className="h-3 w-3" />
                         InsightSphere
                       </div>
@@ -576,7 +576,7 @@ export default function App() {
                               key={i}
                               className="inline-flex items-center gap-1 rounded border border-neutral-800 bg-[#1a1a1a] px-2 py-1 text-[10px] text-neutral-400"
                             >
-                              <FileText className="h-3 w-3 text-orange-500" />
+                              <FileText className="h-3 w-3 text-blue-500" />
                               {c.file_name}
                               <ChevronRight className="h-3 w-3 text-neutral-600" />
                               Row {c.row_number}
@@ -592,7 +592,7 @@ export default function App() {
               {loading && (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-2 rounded bg-[#121212] px-4 py-3 text-xs text-neutral-500 ring-1 ring-neutral-800">
-                    <Loader2 className="h-3.5 w-3.5 animate-spin text-orange-500" />
+                    <Loader2 className="h-3.5 w-3.5 animate-spin text-blue-500" />
                     Thinking…
                   </div>
                 </div>
@@ -609,7 +609,7 @@ export default function App() {
                   key={prompt}
                   onClick={() => sendMessage(prompt)}
                   disabled={loading}
-                  className="rounded border border-neutral-800 bg-[#0a0a0a] px-3 py-1 text-[11px] text-neutral-500 transition hover:border-orange-500/30 hover:text-orange-400 disabled:opacity-50"
+                  className="rounded border border-neutral-800 bg-[#0a0a0a] px-3 py-1 text-[11px] text-neutral-500 transition hover:border-blue-500/30 hover:text-blue-400 disabled:opacity-50"
                 >
                   {prompt}
                 </button>
@@ -622,12 +622,12 @@ export default function App() {
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about your business data…"
                 disabled={loading || backendUp === false}
-                className="flex-1 rounded border border-neutral-800 bg-[#0a0a0a] px-4 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-orange-500/50 disabled:opacity-50"
+                className="flex-1 rounded border border-neutral-800 bg-[#0a0a0a] px-4 py-2.5 text-sm text-neutral-200 placeholder-neutral-600 outline-none transition focus:border-blue-500/50 disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim() || backendUp === false}
-                className="flex items-center gap-1.5 rounded bg-orange-500 px-4 py-2.5 text-sm font-medium text-black transition hover:bg-orange-400 disabled:opacity-50 disabled:hover:bg-orange-500"
+                className="flex items-center gap-1.5 rounded bg-blue-500 px-4 py-2.5 text-sm font-medium text-black transition hover:bg-blue-400 disabled:opacity-50 disabled:hover:bg-blue-500"
               >
                 <Send className="h-4 w-4" />
                 Send
@@ -667,14 +667,14 @@ export default function App() {
                   onClick={() => fileInputRef.current?.click()}
                   className={`flex cursor-pointer flex-col items-center gap-3 rounded border-2 border-dashed p-6 text-center transition-all ${
                     dragging
-                      ? "border-orange-500 bg-orange-500/5"
+                      ? "border-blue-500 bg-blue-500/5"
                       : "border-neutral-700 hover:border-neutral-500 hover:bg-[#1a1a1a]"
                   }`}
                 >
                   <Upload className="h-7 w-7 text-neutral-600" />
                   <p className="text-xs text-neutral-400">
                     Drop your files here or{" "}
-                    <span className="text-orange-400 underline">browse</span>
+                    <span className="text-blue-400 underline">browse</span>
                   </p>
                   <p className="text-[10px] text-neutral-600">
                     .csv · .xlsx · .pdf · .docx
@@ -693,8 +693,8 @@ export default function App() {
                 </div>
 
                 {uploading && (
-                  <div className="mt-3 rounded border border-orange-500/20 bg-orange-500/5 p-3">
-                    <div className="mb-2 flex items-center gap-2 text-xs text-orange-400">
+                  <div className="mt-3 rounded border border-blue-500/20 bg-blue-500/5 p-3">
+                    <div className="mb-2 flex items-center gap-2 text-xs text-blue-400">
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
                       Processing document…
                     </div>
@@ -704,7 +704,7 @@ export default function App() {
                           {i < ingestionStep ? (
                             <CheckCircle2 className="h-3 w-3 text-green-400" />
                           ) : i === ingestionStep ? (
-                            <Loader2 className="h-3 w-3 animate-spin text-orange-400" />
+                            <Loader2 className="h-3 w-3 animate-spin text-blue-400" />
                           ) : (
                             <div className="h-3 w-3 rounded-full border border-neutral-700" />
                           )}
@@ -713,7 +713,7 @@ export default function App() {
                               i < ingestionStep
                                 ? "text-green-400"
                                 : i === ingestionStep
-                                  ? "text-orange-400"
+                                  ? "text-blue-400"
                                   : "text-neutral-600"
                             }
                           >
@@ -764,7 +764,7 @@ export default function App() {
                         key={f.id}
                         className="group flex items-center gap-2 rounded px-2 py-1.5 text-xs text-neutral-400 transition hover:bg-[#1a1a1a] hover:text-neutral-300"
                       >
-                        <FileText className="h-3.5 w-3.5 shrink-0 text-orange-500/70" />
+                        <FileText className="h-3.5 w-3.5 shrink-0 text-blue-500/70" />
                         <span className="min-w-0 flex-1 truncate">{f.filename}</span>
                         <span className="shrink-0 text-[10px] text-neutral-600">
                           {formatTime(f.upload_date)}
