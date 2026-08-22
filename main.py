@@ -3,6 +3,7 @@ import io
 import uuid
 import pandas as pd
 from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import ollama
 import chromadb
@@ -11,6 +12,14 @@ app = FastAPI(
     title="InsightSphere Local RAG API",
     description="Local RAG backend powered by FastAPI, Ollama, and ChromaDB.",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173", "http://localhost:3000", "*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Singleton ChromaDB client — reused across requests to avoid reopening
