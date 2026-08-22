@@ -22,7 +22,10 @@ SYSTEM_PROMPT = (
     "4. Always mention which file and row number provided the key figures."
 )
 
-# Preferred model order — first available wins (updated Aug 2026)
+# Preferred model order — first available wins
+# Note: llama-3.3-70b-versatile was deprecated Aug 16, 2026.
+# Recommended replacements per Groq deprecation page:
+#   openai/gpt-oss-120b (for 70B), qwen/qwen3.6-27b, openai/gpt-oss-20b (for 8B)
 MODELS = ["openai/gpt-oss-120b", "qwen/qwen3.6-27b", "openai/gpt-oss-20b"]
 
 
