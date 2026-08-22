@@ -7,3 +7,7 @@ backend/.env
 frontend/node_modules/
 server.log
 .freebuff/*.log*
+server.log
+vite.log
+*.db
+.freebuff/*.log*

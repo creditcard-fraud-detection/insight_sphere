@@ -14,6 +14,9 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
+    # ── Auth ──
+    JWT_SECRET_KEY: str = "insightsphere-dev-secret-change-in-production"
+
     # ── Groq ──
     GROQ_API_KEY: str = ""
 

@@ -6,3 +6,10 @@ python-multipart
 pydantic-settings
 groq
 fastembed
+openpyxl
+pypdf
+python-docx
+sqlalchemy
+bcrypt
+python-jose[cryptography]
+pydantic[email]

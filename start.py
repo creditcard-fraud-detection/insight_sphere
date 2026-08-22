@@ -17,11 +17,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 FRONTEND = ROOT / "frontend"
 
+# Ensure we use the venv Python even if start.py was run outside the venv
+VENV_PYTHON = ROOT / "venv" / "Scripts" / "python.exe"
+if VENV_PYTHON.exists() and sys.prefix == sys.base_prefix:
+    # We're not inside a venv — use the venv python explicitly
+    PYTHON = str(VENV_PYTHON)
+else:
+    PYTHON = sys.executable
+
 
 def main() -> None:
     # ── Backend ──
     backend_cmd = [
-        sys.executable,
+        PYTHON,
         "-m",
         "uvicorn",
         "backend.app.main:app",

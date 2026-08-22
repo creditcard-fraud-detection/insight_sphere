@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class ChatRequest(BaseModel):
     message: str
     top_k: int = 4
+    chat_id: int | None = None
 
 
 class Citation(BaseModel):

@@ -1,43 +1,63 @@
-"""POST /upload — ingest a CSV file into ChromaDB."""
+"""POST /upload — ingest a document (CSV, Excel, PDF, DOCX) into ChromaDB."""
 
 from __future__ import annotations
 
 import uuid
+from typing import Annotated
 
-from fastapi import APIRouter, File, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from sqlalchemy.orm import Session
 
+from backend.app.core.auth import get_current_user
+from backend.app.db.database import FileRecord, User, get_db
 from backend.app.db.chroma_client import get_collection
-from backend.app.services.chunking import rows_to_chunks
 from backend.app.services.embedding import embed_texts
-from backend.app.services.ingestion import parse_csv
+from backend.app.services.ingestion import SUPPORTED_EXTENSIONS, parse_document
 
 router = APIRouter()
 
 
 @router.post("/upload")
-async def upload_csv(file: UploadFile = File(...)) -> dict:
-    if not file.filename or not file.filename.lower().endswith(".csv"):
-        raise HTTPException(status_code=400, detail="Only .csv files are supported.")
+async def upload_document(
+    file: UploadFile = File(...),
+    current_user: Annotated[User, Depends(get_current_user)] = None,
+    db: Annotated[Session, Depends(get_db)] = None,
+) -> dict:
+    """Ingest an uploaded document into ChromaDB.
 
-    # ── 1. Parse CSV ──
+    Supports: CSV, Excel (.xlsx/.xls), PDF, and Word (.docx).
+    """
+    # ── 0. Validate file type ──
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="No filename provided.")
+
+    ext = file.filename.rsplit(".", 1)[-1].lower() if "." in file.filename else ""
+    if f".{ext}" not in SUPPORTED_EXTENSIONS:
+        supported = ", ".join(sorted(SUPPORTED_EXTENSIONS))
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type '.{ext}'. Supported: {supported}",
+        )
+
+    # ── 1. Parse document → chunks ──
     try:
         contents = await file.read()
-        df = parse_csv(contents, file.filename)
+        chunks = parse_document(contents, file.filename)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc))
     except Exception as exc:
-        raise HTTPException(status_code=400, detail=f"Failed to parse CSV: {exc}")
+        raise HTTPException(status_code=400, detail=f"Failed to parse document: {exc}")
 
-    # ── 2. Chunk rows ──
-    chunks = rows_to_chunks(df)
+    if not chunks:
+        raise HTTPException(status_code=400, detail="No content found in the document.")
 
-    # ── 3. Embed all chunks ──
+    # ── 2. Embed all chunks ──
     try:
         embeddings = await embed_texts([c.text for c in chunks])
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Embedding failed: {exc}")
 
-    # ── 4. Upsert into ChromaDB ──
+    # ── 3. Upsert into ChromaDB ──
     try:
         collection = get_collection()
         collection.add(
@@ -54,6 +74,11 @@ async def upload_csv(file: UploadFile = File(...)) -> dict:
         )
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"ChromaDB upsert failed: {exc}")
+
+    # ── 4. Record in user's file history ──
+    record = FileRecord(user_id=current_user.id, filename=file.filename)
+    db.add(record)
+    db.commit()
 
     return {
         "status": "success",
