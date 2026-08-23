@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 from pathlib import Path
+import os
 
 from sqlalchemy import (
     Column,
@@ -21,7 +22,7 @@ from sqlalchemy.orm import (
 )
 
 _DB_DIR = Path(__file__).resolve().parent.parent.parent  # backend/
-_DB_PATH = _DB_DIR / "insightsphere.db"
+_DB_PATH = Path(os.getenv("SQLITE_PATH", _DB_DIR / "insightsphere.db"))
 DATABASE_URL = f"sqlite:///{_DB_PATH}"
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})

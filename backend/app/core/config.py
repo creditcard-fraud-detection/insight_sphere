@@ -1,6 +1,7 @@
 """Application settings loaded from environment / .env file."""
 
 from pathlib import Path
+import os
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -14,17 +15,17 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # ── Auth ──
-    JWT_SECRET_KEY: str = "insightsphere-dev-secret-change-in-production"
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "insightsphere-dev-secret-change-in-production")
 
     # ── Groq ──
-    GROQ_API_KEY: str = ""
+    GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")
 
     # ── Chroma Cloud ──
-    CHROMA_API_KEY: str | None = None
-    CHROMA_TENANT: str = ""
-    CHROMA_DATABASE: str = "Insight_sphere"
-    CHROMA_COLLECTION: str = "business_records"
-
+    CHROMA_DB_URL: str = os.getenv("CHROMA_DB_URL", "")
+    CHROMA_API_KEY: str | None = os.getenv("CHROMA_API_KEY")
+    CHROMA_TENANT: str = os.getenv("CHROMA_TENANT", "")
+    CHROMA_DATABASE: str = os.getenv("CHROMA_DATABASE", "Insight_sphere")
+    CHROMA_COLLECTION: str = os.getenv("CHROMA_COLLECTION", "business_records")
+    SECRET_KEY: str = os.getenv("SECRET_KEY", "insightsphere-dev-secret-change-in-production")
 
 settings = Settings()

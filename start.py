@@ -82,8 +82,8 @@ def main() -> None:
     procs.append(frontend)
 
     print()
-    print("  Backend  → http://localhost:8000")
-    print("  Frontend → http://localhost:5173")
+    print("  Backend  -> http://localhost:8000")
+    print("  Frontend -> http://localhost:5173")
     print()
     print("  Press Ctrl+C to stop both servers.")
     print("=" * 60)
