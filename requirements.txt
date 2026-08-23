@@ -8,3 +8,4 @@ fastembed
 python-multipart
 pydantic
 pydantic-settings
+email-validator
