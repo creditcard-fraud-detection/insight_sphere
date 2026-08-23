@@ -4,3 +4,4 @@ ollama
 chromadb
 pandas
 python-multipart
+SQLAlchemy
