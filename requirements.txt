@@ -1,7 +1,10 @@
 fastapi
-uvicorn
-ollama
-chromadb
-pandas
-python-multipart
+uvicorn[standard]
 SQLAlchemy
+python-jose[cryptography]
+groq
+chromadb
+fastembed
+python-multipart
+pydantic
+pydantic-settings
