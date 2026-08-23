@@ -8,7 +8,7 @@ import {
 import Landing from "./Landing";
 import Login from "./Login";
 
-const API = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 /* ── Types ─────────────────────────────────────────────────────────── */
 interface Citation {
@@ -110,11 +110,11 @@ export default function App() {
     setView("dashboard");
     // Explicitly fetch chats and files after login
     const headers = { Authorization: `Bearer ${token}` };
-    fetch(`${API}/chats`, { headers })
+    fetch(`${API_URL}/chats`, { headers })
       .then((r) => r.ok ? r.json() : [])
       .then((data) => setChatSessions(data))
       .catch(() => {});
-    fetch(`${API}/files`, { headers })
+    fetch(`${API_URL}/files`, { headers })
       .then((r) => r.ok ? r.json() : [])
       .then((data) => setFiles(data))
       .catch(() => {});
@@ -142,7 +142,7 @@ export default function App() {
   useEffect(() => {
     const check = async () => {
       try {
-        const r = await fetch(`${API}/`);
+        const r = await fetch(`${API_URL}/`);
         setBackendUp(r.ok);
       } catch {
         setBackendUp(false);
@@ -159,7 +159,7 @@ export default function App() {
   const fetchFiles = useCallback(async () => {
     if (!authToken) return;
     try {
-      const r = await fetch(`${API}/files`, { headers: authHeaders() });
+      const r = await fetch(`${API_URL}/files`, { headers: authHeaders() });
       if (r.ok) setFiles(await r.json());
     } catch { /* offline */ }
   }, [authToken, authHeaders]);
@@ -173,7 +173,7 @@ export default function App() {
   const fetchChats = useCallback(async () => {
     if (!authToken) return;
     try {
-      const r = await fetch(`${API}/chats`, { headers: authHeaders() });
+      const r = await fetch(`${API_URL}/chats`, { headers: authHeaders() });
       if (r.ok) setChatSessions(await r.json());
     } catch { /* offline */ }
   }, [authToken, authHeaders]);
@@ -189,7 +189,7 @@ export default function App() {
 
   const loadChat = useCallback(async (chatId: number) => {
     try {
-      const r = await fetch(`${API}/chats/${chatId}`, { headers: authHeaders() });
+      const r = await fetch(`${API_URL}/chats/${chatId}`, { headers: authHeaders() });
       if (!r.ok) return;
       const detail: { id: number; title: string; messages: ChatDetailMessage[] } = await r.json();
 
@@ -248,7 +248,7 @@ export default function App() {
     try {
       const form = new FormData();
       form.append("file", file);
-      const r = await fetch(`${API}/upload`, {
+      const r = await fetch(`${API_URL}/upload`, {
         method: "POST",
         headers: authHeaders(),
         body: form,
@@ -306,7 +306,7 @@ export default function App() {
         const body: Record<string, unknown> = { message: trimmed, top_k: 4 };
         if (currentChatId) body.chat_id = currentChatId;
 
-        const r = await fetch(`${API}/chat`, {
+        const r = await fetch(`${API_URL}/chat`, {
           method: "POST",
           headers: { "Content-Type": "application/json", ...authHeaders() },
           body: JSON.stringify(body),

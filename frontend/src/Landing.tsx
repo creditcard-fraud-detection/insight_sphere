@@ -179,7 +179,7 @@ export default function Landing({ onLaunch }: LandingProps) {
             <div className="absolute left-0 right-0 top-6 h-px bg-neutral-800" />
 
             <div className="grid grid-cols-6 gap-4">
-              {INGESTION_STEPS.map((step, i) => (
+              {INGESTION_STEPS.map((step) => (
                 <div key={step.num} className="relative flex flex-col items-center text-center">
                   {/* Step circle */}
                   <div className="relative z-10 mb-4 flex h-12 w-12 items-center justify-center rounded border border-blue-500/30 bg-[#121212]">
@@ -224,7 +224,7 @@ export default function Landing({ onLaunch }: LandingProps) {
 
           {/* 3-Part Flow */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {DECISION_STEPS.map((step, i) => (
+            {DECISION_STEPS.map((step) => (
               <div
                 key={step.num}
                 className="rounded border border-neutral-800 bg-[#121212] p-6 transition hover:border-blue-500/30"
